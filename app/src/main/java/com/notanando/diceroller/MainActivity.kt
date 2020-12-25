@@ -2,8 +2,8 @@ package com.notanando.diceroller
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import com.notanando.diceroller.databinding.ActivityMainBinding
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -14,6 +14,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.rollButton.text = "Let's Roll"
+        val rollButton = binding.rollButton
+
+        rollButton.setOnClickListener {
+            rollDice()
+        }
+    }
+
+    private fun rollDice() {
+        val resultText = binding.resultText
+
+        val randomInt = Random().nextInt(6) + 1
+
+        resultText.text = randomInt.toString()
     }
 }
